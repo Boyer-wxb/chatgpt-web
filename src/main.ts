@@ -47,7 +47,7 @@ async function bootstrap() {
   // //     })
   // //   }, 6000)
   }).catch(() => {
-    console.log('Authenticated Failed')
+    alert('Authenticated Failed')
   })
 }
 
