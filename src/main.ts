@@ -49,6 +49,8 @@ async function bootstrap() {
   }).catch(() => {
     alert('Authenticated Failed')
   })
+
+  window.$keycloak = keycloak
 }
 
 bootstrap()
