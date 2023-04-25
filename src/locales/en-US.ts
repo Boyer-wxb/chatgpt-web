@@ -63,6 +63,10 @@ export default {
     timeout: 'Timeout',
     socks: 'Socks',
     httpsProxy: 'HTTPS Proxy',
+    wallet: 'Wallet',
+    balance: 'Balance',
+    recharge: 'recharge',
+    rechargeLimit: 'The minimum amount of top-up is {msg}',
   },
   store: {
     local: 'Local',

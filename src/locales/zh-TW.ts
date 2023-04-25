@@ -63,6 +63,11 @@ export default {
     timeout: '逾時',
     socks: 'Socks',
     httpsProxy: 'HTTPS Proxy',
+    wallet: '錢包',
+    balance: '餘額',
+    recharge: '充值',
+    rechargeLimit: '充值最小額度為{msg}',
+
   },
   store: {
     local: '本機',

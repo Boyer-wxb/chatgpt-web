@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { NModal, NTabPane, NTabs } from 'naive-ui'
 import General from './General.vue'
+import Wallet from './Wallet.vue'
 import { SvgIcon } from '@/components/common'
 
 const props = defineProps<Props>()
@@ -48,6 +49,13 @@ const show = computed({
           </template>
           <About />
         </NTabPane> -->
+        <NTabPane name="Wallet" tab="Wallet">
+          <template #tab>
+            <SvgIcon class="text-lg" icon="ri:wallet-3-line" />
+            <span class="ml-2">{{ $t('setting.wallet') }}</span>
+          </template>
+          <Wallet />
+        </NTabPane>
       </NTabs>
     </div>
   </NModal>
