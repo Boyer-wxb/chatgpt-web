@@ -13,12 +13,23 @@ export interface UserState {
 }
 
 export function defaultSetting(): UserState {
-  return {
-    userInfo: {
-      avatar: '',
-      name: window.$keycloak.idTokenParsed.preferred_username || 'invalid username',
-      description: 'Greetings',
-    },
+  if (window.$keycloak) {
+    return {
+      userInfo: {
+        avatar: '',
+        name: window.$keycloak.idTokenParsed.preferred_username || 'invalid username',
+        description: 'Greetings',
+      },
+    }
+  }
+  else {
+    return {
+      userInfo: {
+        avatar: '',
+        name: 'No Login',
+        description: 'Greetings',
+      },
+    }
   }
 }
 
