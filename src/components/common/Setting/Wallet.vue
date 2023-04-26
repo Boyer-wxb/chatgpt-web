@@ -20,6 +20,10 @@ function toCharge(amount: number) {
 
   rechargeValue.value = amount
 }
+
+function doCharge() {
+  message.info(`${rechargeValue.value}`)
+}
 </script>
 
 <template>
@@ -66,6 +70,9 @@ function toCharge(amount: number) {
             $
           </template>
         </NInputNumber>
+        <NButton type="primary" @click="doCharge">
+          {{ $t('setting.recharge') }}
+        </NButton>
       </div>
     </div>
   </div>

@@ -14,6 +14,7 @@ export interface UserState {
 
 export function defaultSetting(): UserState {
   if (window.$keycloak) {
+    console.log(window.$keycloak)
     return {
       userInfo: {
         avatar: '',

@@ -22,6 +22,12 @@ export interface Response<T = any> {
 function http<T = any>(
   { url, data, method, headers, onDownloadProgress, signal, beforeRequest, afterRequest }: HttpOption,
 ) {
+  if (window.$keycloak && window.$keycloak.subject) {
+    if (!headers)
+      headers = {}
+    headers.user_id = window.$keycloak.subject
+  }
+
   const successHandler = (res: AxiosResponse<Response<T>>) => {
     const authStore = useAuthStore()
 
