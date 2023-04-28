@@ -1,4 +1,3 @@
-import { randomUUID } from 'crypto'
 import express from 'express'
 import type { ChatContext, ChatMessage } from './chatgpt'
 import { chatConfig, chatReplyProcess } from './chatgpt'
@@ -19,23 +18,14 @@ app.all('*', (_, res, next) => {
 })
 
 router.post('/chat-process', auth, async (req, res) => {
+  const isOk = await pool.checkConsume(req.headers.user_id)
+  console.log('isOk', isOk)
+  if (!isOk) {
+    res.send({ status: 'Fail', message: 'Insufficient balance', data: null })
+    return
+  }
+
   res.setHeader('Content-type', 'application/octet-stream')
-  pool.query('insert into gpt_consume_record SET ?',
-    {
-      id: randomUUID(),
-      create_user: req.headers.user_id,
-      create_time: new Date(),
-      user_id: req.headers.user_id,
-      total: 0,
-      tokens: 1,
-      model: 'gpt-3.5',
-    },
-    (error, results, fields) => {
-      if (error)
-        throw error
-      if (results.affectedRows <= 0)
-        throw new Error('db update failed!')
-    })
   try {
     const { prompt, options = {} } = req.body as { prompt: string; options?: ChatContext }
     let firstChunk = true
